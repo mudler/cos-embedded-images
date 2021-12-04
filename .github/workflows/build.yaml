@@ -16,6 +16,11 @@ jobs:
         include:
           - tag: "odroidc2-base"
             dockerfile: "odroidc2-base"
+            model: odroid_c2
+            platforms: "linux/arm64"
+          - tag: "rpi-base"
+            dockerfile: "rpi-base"
+            model: rpi64
             platforms: "linux/arm64"
 
     steps:
@@ -75,7 +80,7 @@ jobs:
          git clone https://github.com/rancher-sandbox/cOS-toolkit.git
          cd cOS-toolkit
          mkdir build
-         sudo -E ./images/arm-img-builder.sh --docker-image ${{ steps.prep.outputs.current }} build/${{ matrix.tag }}-${{ steps.prep.outputs.commit }}.img
+         sudo -E ./images/arm-img-builder.sh --model ${{ matrix.model }} --docker-image ${{ steps.prep.outputs.current }} build/${{ matrix.tag }}-${{ steps.prep.outputs.commit }}.img
          mv build ../
       - name: Upload Image
         run: |
