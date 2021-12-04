@@ -10,6 +10,7 @@ RUN zypper in -y wireless-tools \
                  kmod \
                  libudev1 \
                  vim-small \
+		 docker-compose \
                  tmux \
                  zsh && \
     zypper cc
