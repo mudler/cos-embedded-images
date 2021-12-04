@@ -11,7 +11,7 @@ RUN zypper in -y wireless-tools \
                  libudev1 \
                  vim-small \
                  tmux \
-                 zsh
+                 zsh && \
     zypper cc
 
 RUN systemctl disable wicked
