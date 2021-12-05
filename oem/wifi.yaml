@@ -1,0 +1,11 @@
+# Cloud init sample to connect to wifi and keep it connected
+stages:
+  boot:
+  - &wifi
+    name: "set wifi"
+    commands:
+    - systemctl start NetworkManager
+    - nmcli device wifi list
+    - nmcli device wifi connect SSID password XXX
+  reconcile:
+  - <<: *wifi
