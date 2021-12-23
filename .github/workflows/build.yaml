@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - master
+      - test
     tags:
       - '*'
 
@@ -22,7 +23,10 @@ jobs:
             dockerfile: "rpi-base"
             model: rpi64
             platforms: "linux/arm64"
-
+          - tag: "rpi-tft"
+            dockerfile: "rpi-tft"
+            model: rpi64
+            platforms: "linux/arm64"
     steps:
       - name: Checkout
         uses: actions/checkout@v2

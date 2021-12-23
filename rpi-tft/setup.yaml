@@ -1,0 +1,22 @@
+# Cloud init sample to connect to wifi and keep it connected
+stages:
+  boot:
+  - name: "check tft setting"
+    commands:
+    - |
+        EFI=$(blkid -L EFI || true)
+        mkdir /run/efi
+        mount $EFI /run/efi
+        if ! grep "tft35a" /run/efi/config.txt; then
+          echo "hdmi_force_hotplug=1" >> /run/efi/config.txt
+          echo "dtparam=i2c_arm=on" >> /run/efi/config.txt
+          echo "dtparam=spi=on" >> /run/efi/config.txt
+          echo "enable_uart=1" >> /run/efi/config.txt
+          echo "dtoverlay=tft35a:rotate=90" >> /run/efi/config.txt
+          cp /opt/tft35a-overlay.dtb /run/efi/overlays/
+          cp /opt/tft35a-overlay.dtb /run/efi/overlays/tft35a.dtbo
+          reboot
+        fi
+        umount /run/efi
+
+
