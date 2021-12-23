@@ -17,11 +17,11 @@ RUN zypper in -y wireless-tools \
                  zsh && \
     zypper cc
 
-COPY config /etc/cos/config
-COPY 99-calibration.conf-35-90 /etc/X11/xorg.conf.d/99-calibration.conf
-COPY 99-fbturbo.conf /usr/share/X11/xorg.conf.d/99-fbturbo.conf
-COPY tft35a-overlay.dtb /opt/tft35a-overlay.dtb
-COPY setup.yaml /system/oem/tft.yaml
+COPY ./config /etc/cos/config
+COPY ./99-calibration.conf-35-90 /etc/X11/xorg.conf.d/99-calibration.conf
+COPY ./99-fbturbo.conf /usr/share/X11/xorg.conf.d/99-fbturbo.conf
+COPY ./tft35a-overlay.dtb /opt/tft35a-overlay.dtb
+COPY ./setup.yaml /system/oem/tft.yaml
 RUN systemctl disable wicked
 RUN systemctl enable NetworkManager
 
