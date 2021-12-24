@@ -1,4 +1,4 @@
-FROM quay.io/costoolkit/examples:rpi-554a9b96
+FROM quay.io/costoolkit/examples:rpi-d51e0c0e
 
 RUN zypper ref
 RUN zypper in -y wireless-tools \
